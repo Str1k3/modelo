@@ -1,8 +1,6 @@
 <?php get_header(); ?>
 
-<div id="primary" class="content-area">
-	<main id="main" class="site-main" role="main">
-		<div class="container">
+<main role="main">
 
 		<?php
 		if ( have_posts() ) :
@@ -12,19 +10,27 @@
 
 				?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header class="entry-header">
-				<?php
-				if ( is_single() ) {
-					the_title( '<h1 class="entry-title">', '</h1>' );
-				} else {
-					the_title( sprintf( '<h2 class="alpha entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-				}
-				?>
+				<header>
+					<div class="container">
+						<?php
+						the_title( '<h1>', '</h1>' );
+						the_post_thumbnail( 'full' );
+						?>
+					</div>
 				</header><!-- .entry-header -->
-				<div class="entry-content">
-				<?php
-				the_content();
-				?>
+				<div class="content">
+					<div class="container">
+						<?php
+						the_content();
+						?>
+						<div class="meta">
+							<?php the_category( ', ' ); ?>
+							<?php
+							echo sprintf( '<p>%s<b>%1s</b></p>', __( 'Escrito por ', 'model' ), get_the_author() );
+							echo sprintf( '<p>%s%1s</p>', __( 'em ', 'model' ), get_the_date() );
+							?>
+						</div>
+					</div>
 				</div><!-- .entry-content -->
 
 			</article><!-- #post-## -->
@@ -59,8 +65,8 @@
 
 		endif;
 			?>
-		</div>
-	</main><!-- #main -->
-</div><!-- #primary -->
+	</div>
+</main><!-- #main -->
+
 
 <?php get_footer(); ?>
