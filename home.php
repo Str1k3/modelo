@@ -37,6 +37,7 @@ $page_id = get_option( 'page_for_posts' ); ?>
 				<div class="navigation">
 				<?php echo paginate_links(); ?>
 				</div>
+			<?php
 			else :
 				?>
 				<div class="no-results not-found">
@@ -56,7 +57,7 @@ $page_id = get_option( 'page_for_posts' ); ?>
 			</div>
 				<?php
 		endif;
-		?>
+			?>
 		</div>
 	</main>
 </div>
